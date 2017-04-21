@@ -1,0 +1,205 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- Plotly.js -->
+  <link href="my.css" rel="stylesheet" media="all" type="text/css">
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+
+</head>
+
+<body>
+  <div>
+    <div id="total_0" class="bar"></div>
+    <div id="div_0" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_1" class="bar"></div>
+    <div id="div_1" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_2" class="bar"></div>
+    <div id="div_2" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_3" class="bar"></div>
+    <div id="div_3" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_4" class="bar"></div>
+    <div id="div_4" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_5" class="bar"></div>
+    <div id="div_5" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_6" class="bar"></div>
+    <div id="div_6" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_7" class="bar"></div>
+    <div id="div_7" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_8" class="bar"></div>
+    <div id="div_8" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_9" class="bar"></div>
+    <div id="div_9" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_10" class="bar"></div>
+    <div id="div_10" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_11" class="bar"></div>
+    <div id="div_11" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_12" class="bar"></div>
+    <div id="div_12" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_13" class="bar"></div>
+    <div id="div_13" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_14" class="bar"></div>
+    <div id="div_14" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_15" class="bar"></div>
+    <div id="div_15" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_16" class="bar"></div>
+    <div id="div_16" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_17" class="bar"></div>
+    <div id="div_17" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_18" class="bar"></div>
+    <div id="div_18" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_19" class="bar"></div>
+    <div id="div_19" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_20" class="bar"></div>
+    <div id="div_20" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_21" class="bar"></div>
+    <div id="div_21" class="scatter"></div>
+  </div>
+  <div>
+    <div id="total_22" class="bar"></div>
+    <div id="div_22" class="scatter"></div>
+  </div>
+
+
+  <script>
+    var layout_scatter = {
+      autosize: true,
+      yaxis:{zeroline:false, hoverformat: '.2f'},
+      margin: {
+        l: 20,
+        r: 50,
+        b: 100,
+        t: 10,
+        pad: 0
+      },
+
+      xaxis : {
+        tickformat : "%d %m %y",
+        tickfont : {
+          size : 10,
+        },
+
+      }
+    };
+
+    var layout_bar = {
+      autosize: true,
+      yaxis:{zeroline:false, hoverformat: '.2f'},
+      margin: {
+        l: 30,
+        r: 30,
+        b: 100,
+        t: 100,
+        pad: 0
+      },
+
+    };
+
+    for (m=0; m<23; m++) {
+      Plotly.d3.csv('./csv120/'+m+'_total'+'.csv', function(rows){
+        var colors = Plotly.d3.scale.category10();
+
+        var trace = {
+
+          type: 'bar',                    // set the chart type
+          x: rows.map(function(row){          // set the x-data
+            return row['class'];
+          }),
+          y: rows.map(function(row){          // set the x-data
+            return row['number'];
+          }),
+
+
+          marker:{
+              color: [
+                colors(0),
+                colors(1),
+                colors(2),
+                colors(3),
+                colors(4)]
+              },
+
+        };
+        Plotly.newPlot('total_'+this.m, [trace],layout_bar, {displayModeBar: false} );
+      }.bind( {m: m} ));
+  };
+
+
+    for (j=0; j<23; j++) {
+      Plotly.d3.csv('./csv120/'+j+'.csv', function(rows){
+          console.log(this.j);
+          var col1 = Object.keys(rows[0])[1];
+          var col2 = Object.keys(rows[0])[2];
+          var tab = [];
+
+          for (i=0;i<5;i++ ) {
+            var col = Object.keys(rows[0])[i+1];
+            console.log(col);
+            var trace = {
+
+              type: 'scatter',                    // set the chart type
+              mode: 'lines',
+              name: "'"+col+"'",                   // connect points with lines
+              x: rows.map(function(row){          // set the x-data
+                return row['date'];
+              }),
+              y: rows.map(function(row){          // set the x-data
+                return row[col];
+              }),
+
+
+            };
+            tab.push(trace);
+          }
+          Plotly.newPlot('div_'+this.j, tab, layout_scatter, {displayModeBar: false});
+          //Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+      }.bind( {j: j} ));
+    }
+
+
+
+  </script>
+</body>
+</html>

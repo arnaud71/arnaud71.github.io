@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.bar {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  vertical-align: top;
+}
+.scatter {
+  display: inline-block;
+  width: 800px;
+  height: 300px;
+  vertical-align: top;
+}

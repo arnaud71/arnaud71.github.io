@@ -1,0 +1,160 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- Plotly.js -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div id="nomDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="programmeDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="sondageDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="2017Div" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="ageDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="femmeDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="economiqueDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="chomageDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="educationDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="santeDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="europeDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="retraiteDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="immigrationDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="justiceDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="ecologieDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="livreDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="cultureDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="politiqueDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="facebookDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="twitterDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="blogDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div id="youtubeDiv" style="width: 1000px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+
+  <script>
+    var td_programme;
+    var td_2017;
+    var td_nom;
+    var td_sondage;
+    var td_age;
+    var td_femme;
+    var td_economique;
+    var td_chomage;
+    var td_education;
+    var td_sante;
+    var td_europe;
+    var td_retraite;
+    var td_immigration;
+    var td_justice;
+    var td_ecologie;
+    var td_livre;
+    var td_culture;
+    var td_politique;
+    var td_facebook;
+    var td_twitter;
+    var td_blog;
+    var td_youtube;
+
+
+    var layout = {
+      autosize: false,
+      width: 1000,
+      height: 400,
+      margin : {
+        r : 200,
+      },
+      xaxis : {
+        tickformat : "%d %m %y",
+        tickfont : {
+          size : 10,
+        },
+
+      }
+
+
+
+    };
+
+    d3.json("./td_nom.json", function(td_nom) {
+        Plotly.newPlot('nomDiv', td_nom, layout);
+    });
+
+    d3.json("./td_femme.json", function(td_femme) {
+        Plotly.newPlot('femmeDiv', td_femme, layout);
+    });
+
+    d3.json("./td_age.json", function(td_age) {
+        Plotly.newPlot('ageDiv', td_age, layout);
+    });
+
+    d3.json("./td_economique.json", function(td_economique) {
+        Plotly.newPlot('economiqueDiv', td_economique, layout);
+    });
+
+    d3.json("./td_chomage.json", function(td_chomage) {
+        Plotly.newPlot('chomageDiv', td_chomage, layout);
+    });
+
+    d3.json("./td_programme.json", function(td_programme) {
+        Plotly.newPlot('programmeDiv', td_programme, layout);
+    });
+
+    d3.json("./td_sondage.json", function(td_programme) {
+        Plotly.newPlot('sondageDiv', td_programme, layout);
+    });
+
+    d3.json("./td_2017.json", function(td_2017) {
+        Plotly.newPlot('2017Div', td_2017, layout);
+    });
+
+    d3.json("./td_education.json", function(td_education) {
+        Plotly.newPlot('educationDiv', td_education, layout);
+    });
+    d3.json("./td_sante.json", function(td_sante) {
+        Plotly.newPlot('santeDiv', td_sante, layout);
+    });
+    d3.json("./td_europe.json", function(td_europe) {
+        Plotly.newPlot('europeDiv', td_europe, layout);
+    });
+    d3.json("./td_retraite.json", function(td_retraite) {
+        Plotly.newPlot('retraiteDiv', td_retraite, layout);
+    });
+    d3.json("./td_immigration.json", function(td_immigration) {
+        Plotly.newPlot('immigrationDiv', td_immigration, layout);
+    });
+    d3.json("./td_justice.json", function(td_justice) {
+        Plotly.newPlot('justiceDiv', td_justice, layout);
+    });
+    d3.json("./td_ecologie.json", function(td_ecologie) {
+        Plotly.newPlot('ecologieDiv', td_ecologie, layout);
+    });
+    d3.json("./td_livre.json", function(td_livre) {
+        Plotly.newPlot('livreDiv', td_livre, layout);
+    });
+
+    d3.json("./td_culture.json", function(td_culture) {
+        Plotly.newPlot('cultureDiv', td_culture, layout);
+    });
+
+    d3.json("./td_politique.json", function(td_politique) {
+            Plotly.newPlot('politiqueDiv', td_politique, layout);
+    });
+
+    d3.json("./td_facebook.json", function(td_facebook) {
+        Plotly.newPlot('facebookDiv', td_facebook, layout);
+    });
+
+    d3.json("./td_twitter.json", function(td_twitter) {
+        Plotly.newPlot('twitterDiv', td_twitter, layout);
+    });
+
+    d3.json("./td_blog.json", function(td_blog) {
+        Plotly.newPlot('blogDiv', td_blog, layout);
+    });
+
+    d3.json("./td_youtube.json", function(td_youtube) {
+        Plotly.newPlot('youtubeDiv', td_youtube, layout);
+    });
+  </script>
+</body>
+</html>

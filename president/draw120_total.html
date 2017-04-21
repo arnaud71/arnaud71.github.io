@@ -1,0 +1,177 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- Plotly.js -->
+  <link href="my.css" rel="stylesheet" media="all" type="text/css">
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div>
+      <div id="total_TOTAL" class="bar"></div>
+      <div id="TOTAL" class="scatter"></div>
+    </div>
+    <div>
+      <div id="total_TOTAL0" class="bar"></div>
+      <div id="TOTAL0" class="scatter"></div>
+    </div>
+
+    <div>
+      <div id="total_WEB_BEST_TOPIC" class="bar"></div>
+      <div id="WEB_BEST_TOPIC" class="scatter"></div>
+    </div>
+    <div>
+      <div id="total_WEB_BEST_TOPIC0" class="bar"></div>
+      <div id="WEB_BEST_TOPIC0" class="scatter"></div>
+    </div>
+    <div>
+      <div id="total_BEST" class="bar"></div>
+      <div id="BEST" class="scatter"></div>
+    </div>
+    <div>
+      <div id="total_WEB" class="bar"></div>
+      <div id="WEB" class="scatter"></div>
+    </div>
+
+    <div>
+      <div id="total_TOPIC" class="bar"></div>
+      <div id="TOPIC" class="scatter"></div>
+    </div>
+
+    <div>
+      <div id="total_TOPIC0" class="bar"></div>
+      <div id="TOPIC0" class="scatter"></div>
+    </div>
+
+  <script>
+    var layout_scatter = {
+      autosize: true,
+      yaxis:{zeroline:false, hoverformat: '.2f'},
+      margin: {
+        l: 20,
+        r: 50,
+        b: 100,
+        t: 10,
+        pad: 0
+      },
+
+      xaxis : {
+        tickformat : "%d %m %y",
+        tickfont : {
+          size : 10,
+        },
+
+      }
+    };
+
+
+    var filename = ['TOTAL','TOTAL0','WEB_BEST_TOPIC','WEB_BEST_TOPIC0','BEST','WEB','TOPIC','TOPIC0'];
+
+
+    for (m=0; m<filename.length; m++) {
+      Plotly.d3.csv('./csv120/'+filename[m]+'_total'+'.csv', function(rows){
+        var annotationContent = [];
+
+        var layout_bar = {
+          annotations: annotationContent,
+          yaxis:{zeroline:false, hoverformat: '.2f'},
+          autosize: true,
+          margin: {
+            l: 30,
+            r: 30,
+            b: 100,
+            t: 100,
+            pad: 0
+          },
+
+        };
+
+        var colors = Plotly.d3.scale.category10();
+
+
+        var xValue = rows.map(function(row){          // set the x-data
+          return row['class'];
+        });
+
+        var yValue = rows.map(function(row){          // set the x-data
+          return row['number'];
+        });
+
+
+        for( var n = 0 ; n < xValue.length ; n++ ){
+          var result = {
+            x: xValue[n],
+            y: yValue[n],
+            text: yValue[n],
+            xanchor: 'center',
+            yanchor: 'bottom',
+            showarrow: false
+          };
+          annotationContent.push(result);
+        }
+
+
+        var trace = {
+
+          type: 'bar',                    // set the chart type
+          x: rows.map(function(row){          // set the x-data
+            return row['class'];
+          }),
+          y: rows.map(function(row){          // set the x-data
+            return row['number'];
+          }),
+
+
+          marker:{
+              color: [
+                colors(0),
+                colors(1),
+                colors(2),
+                colors(3),
+                colors(4)]
+              },
+
+        };
+        Plotly.newPlot('total_'+filename[this.m], [trace],layout_bar, {displayModeBar: false} );
+      }.bind( {m: m} ));
+  };
+
+
+
+    for (j=0; j<filename.length; j++) {
+      Plotly.d3.csv('./csv120/'+filename[j]+'.csv', function(rows){
+          //console.log(this.j);
+          var col1 = Object.keys(rows[0])[1];
+          var col2 = Object.keys(rows[0])[2];
+          var tab = [];
+
+          for (i=0;i<5;i++ ) {
+            var col = Object.keys(rows[0])[i+1];
+            console.log(col);
+            var trace = {
+
+              type: 'scatter',                    // set the chart type
+              mode: 'lines',
+              name: "'"+col+"'",                   // connect points with lines
+              x: rows.map(function(row){          // set the x-data
+                return row['date'];
+              }),
+              y: rows.map(function(row){          // set the x-data
+                return row[col];
+              }),
+
+
+            };
+            tab.push(trace);
+          }
+          Plotly.newPlot(filename[this.j], tab, layout_scatter, {displayModeBar: false});
+          //Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+      }.bind( {j: j} ));
+    }
+
+
+
+  </script>
+</body>
+</html>
