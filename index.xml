@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Webometrie</title>
-    <link>https://webometric.github.io/</link>
+    <link>https://arnaud71.github.io/</link>
     <description>Recent content on Webometrie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
     
-	<atom:link href="https://webometric.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://arnaud71.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
